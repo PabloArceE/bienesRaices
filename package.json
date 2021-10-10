@@ -1,0 +1,19 @@
+{
+  "name": "bienesraices",
+  "version": "1.0.0",
+  "description": "sitio de empresa dedicada a la venta de biens raíces",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PabloArceE/bienesRaices.git"
+  },
+  "author": "Pablo Arce",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PabloArceE/bienesRaices/issues"
+  },
+  "homepage": "https://github.com/PabloArceE/bienesRaices#readme"
+}
