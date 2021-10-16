@@ -9,9 +9,9 @@ const concat = require('gulp-concat');
 const rename = require('gulp-rename');
 const webp = require('gulp-webp');
 const notify = require('gulp-notify');
-/* //const imagemin = require('gulp-imagemin');
+const imagemin = require('gulp-imagemin');
 const cache = require('gulp-cache');
- */
+
 
 //constante con atributos para llamar a los paths, para configurar los watchs y para compilar y minificar los archivos
 const path = {
@@ -63,12 +63,22 @@ function formatoWebp(){
     return src(path.imagenes)
     .pipe(webp())
     .pipe(dest('bild/img'))
-    .pipe(notify({message: 'Se aplicó el formato webp correctamente'}))
+    .pipe(notify({message: 'Se aplicó el formato webp correctamente'}));
 }
 
+//función para minimizar imagenes quedando disponibles las imágenes en un aversión más liviana 
+
+function imageMin(){
+    return src(path.imagenes)
+    .pipe(cache(imagemin({optimizationLevel: 3})))
+    .pipe(dest('bild/img'));
+}
+
+//función watch
 
 //EXPORTS PARA LLAMAR A LAS TAREAS DE GULP
 
 exports.css = css;// export.alias = nombre de la función
 exports.js = javascript;
 exports.webp = formatoWebp; 
+exports.imgmin = imageMin;
