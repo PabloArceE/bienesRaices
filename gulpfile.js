@@ -7,10 +7,11 @@ const sourcemaps = require('gulp-sourcemaps');
 const terser = require('gulp-terser-js');
 const concat = require('gulp-concat');
 const rename = require('gulp-rename');
-/* //const imagemin = require('gulp-imagemin');
+const webp = require('gulp-webp');
 const notify = require('gulp-notify');
+/* //const imagemin = require('gulp-imagemin');
 const cache = require('gulp-cache');
-const webp = require('gulp-webp'); */
+ */
 
 //constante con atributos para llamar a los paths, para configurar los watchs y para compilar y minificar los archivos
 const path = {
@@ -21,7 +22,7 @@ const path = {
 
 //CREACIÓN DE LAS FUNCIONES PARA AUTOMATIZAR LA PRODUCCIÓN DEL CÓDIGO
 
-//función para compilar sass con gulp, minificar css y crear un sourcemap 
+//función para css
 function css(){  
     return src(path.scss)
         .pipe(sourcemaps.init())
@@ -56,9 +57,18 @@ function javascript(){
 - rename permite renombrar archivos a través de varios métodos. En este caso agregamos el sufijo min para indicar que el archivo ya fue minificado
 */
 
+//función para convertir las imagenes a formato webp
+
+function formatoWebp(){
+    return src(path.imagenes)
+    .pipe(webp())
+    .pipe(dest('bild/img'))
+    .pipe(notify({message: 'Se aplicó el formato webp correctamente'}))
+}
 
 
 //EXPORTS PARA LLAMAR A LAS TAREAS DE GULP
 
 exports.css = css;// export.alias = nombre de la función
 exports.js = javascript;
+exports.webp = formatoWebp; 
