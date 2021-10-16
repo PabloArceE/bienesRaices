@@ -76,9 +76,19 @@ function imageMin(){
 
 //función watch
 
+function watchFiles(){
+    watch(path.scss, css);
+    watch(path.js, javascript);
+    watch(path.imagenes, formatoWebp);
+    watch(path.imagenes, imageMin);
+}
+
 //EXPORTS PARA LLAMAR A LAS TAREAS DE GULP
 
 exports.css = css;// export.alias = nombre de la función
 exports.js = javascript;
 exports.webp = formatoWebp; 
 exports.imgmin = imageMin;
+exports.wf = watchFiles;
+
+exports.default = parallel( css, javascript, formatoWebp, imagemin);
